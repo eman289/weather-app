@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather</title>
+    <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./css/all.min.css" />
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-0">
+      <div class="container">
+        <a class="navbar-brand me-0" href="#"
+          ><img
+            src="./images/logo.png"
+            class="w-25 pe-2"
+            alt=""
+          />
+          Weather</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item py-0 px-2">
+              <a class="nav-link active" aria-current="page" href="#home">Home</a>
+            </li>
+            <li class="nav-item py-0 px-2">
+              <a class="nav-link" href="#">News</a>
+            </li>
+            <li class="nav-item py-0 px-2">
+              <a class="nav-link" href="#">Live cameras</a>
+            </li>
+            <li class="nav-item py-0 px-2">
+              <a class="nav-link" href="#">Photos</a>
+            </li>
+            <li class="nav-item py-0 px-2">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <section id="home" class="py-5">
+      <div class="container py-5">
+        <div class="input">
+          <input
+            id="locationInput"
+            type="text"
+            placeholder="Find your location"
+            class="form-control p-3 bg-dark text-white"
+          />
+          <button class="btn btn-primary findBtn px-4 px-sm-5">Find</button>
+        </div>
+        <div class="display-data pt-5">
+          <div class="row pt-5 g-0" id="dataRow"></div>
+        </div>
+      </div>
+    </section>
+    <footer class="bg-dark py-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="input">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                class="form-control p-3 text-white"
+              />
+              <button class="btn btn-primary subBtn px-3">Subscribe</button>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div>
+              <ul class="list-unstyled d-flex justify-content-center gap-3 m-0 mt-5 mt-md-0">
+                <li>
+                  <span><i class="fa-brands fa-facebook-f"></i></span>
+                </li>
+                <li>
+                  <span><i class="fa-brands fa-instagram"></i></span>
+                </li>
+                <li>
+                  <span><i class="fa-brands fa-google-plus-g"></i></span>
+                </li>
+                <li>
+                  <span><i class="fa-brands fa-pinterest"></i></span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col mt-5 text-center">
+            <p>
+              Copyright 2023 Route. Designed by EmanNegm. All rights reserved
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="./js/bootstrap.bundle.js"></script>
+    <script src="./js/main.js"></script>
+  </body>
+</html>

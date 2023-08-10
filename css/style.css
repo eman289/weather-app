@@ -1,0 +1,153 @@
+body {
+  letter-spacing: 2px;
+  color: #fff;
+  font-family: "Quicksand", sans-serif;
+}
+
+::selection {
+  background-color: #0d6efd;
+  color: #fff;
+}
+
+.navbar-brand {
+  color: #ffffffad;
+}
+
+.navbar-brand i {
+  font-size: 40px;
+}
+
+.nav-item.btn {
+  border-radius: 100vh;
+  margin-left: 15px;
+}
+
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link.show {
+  color: #0d6efd;
+}
+
+.nav-link {
+  transition: color 200ms ease-in;
+}
+
+.nav-link:hover {
+  color: #0d6efd;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+  color: #ffffffc7;
+}
+
+#home {
+  min-height: 620px;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.74), rgba(0, 0, 0, 0.507)),
+    url(../images/background.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
+#home .container {
+  padding-left: 70px;
+  padding-right: 70px;
+}
+
+.input {
+  max-width: 650px;
+  position: relative;
+  display: flex;
+  margin: auto;
+  align-items: center;
+}
+
+#home .findBtn,
+footer .subBtn {
+  position: absolute;
+  right: 5px;
+  height: 85%;
+  border-radius: 100vh;
+}
+
+#home input {
+  border-radius: 100vh;
+  border-color: #1112138c;
+}
+#home input::placeholder {
+  color: #ffffff7f;
+}
+
+.card {
+  border-radius: 0;
+  min-height: 300px;
+  overflow: hidden;
+}
+
+.card-header {
+  background-color: #2a3640;
+  color: #ffffffcd;
+}
+
+.card .status {
+  color: #0d6efd;
+}
+
+footer input {
+  border-radius: 100vh !important;
+  border-color: #1112138c !important;
+  background-color: #2a3640 !important;
+}
+
+footer input::placeholder {
+  color: #ffffff7f !important;
+}
+
+ul span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #2a3640;
+  color: #0d6efd;
+  font-size: 1.25rem;
+  width: 2.8125rem;
+  height: 2.8125rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 200ms ease-in-out, color 200ms ease-in-out;
+}
+
+ul span:hover {
+  background-color: #0d6efd;
+  color: #fff;
+}
+
+footer p {
+  color: #758797b8;
+  font-size: 0.75rem;
+}
+
+@media (max-width: 550px) {
+  :root {
+    font-size: 14px;
+  }
+
+  #home .container {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+
+@media (max-width: 380px) {
+  :root {
+    font-size: 12.5px;
+  }
+
+  #home .container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .navbar-brand {
+    width: 150px;
+  }
+}
