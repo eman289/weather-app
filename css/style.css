@@ -17,11 +17,6 @@ body {
   font-size: 40px;
 }
 
-.nav-item.btn {
-  border-radius: 100vh;
-  margin-left: 15px;
-}
-
 .navbar-nav .nav-link.active,
 .navbar-nav .nav-link.show {
   color: #0d6efd;
@@ -45,7 +40,6 @@ body {
   background-image: linear-gradient(rgba(0, 0, 0, 0.74), rgba(0, 0, 0, 0.507)),
     url(../images/background.jpg);
   background-size: cover;
-  background-position: center;
 }
 
 #home .container {
