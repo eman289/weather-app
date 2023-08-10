@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   async function searchByCoordinates(latitude, longitude) {
     var weatherApi = await fetch(
-      `http://api.weatherapi.com/v1/forecast.json?key=6c4b854f8b4b4f7eb42214015230608&q=${latitude},${longitude}&days=3`
+      `https://api.weatherapi.com/v1/forecast.json?key=6c4b854f8b4b4f7eb42214015230608&q=${latitude},${longitude}&days=3`
     );
     var apiResponse = await weatherApi.json();
     data = apiResponse;
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   async function searchCity(cityName) {
     var weatherApi = await fetch(
-      `http://api.weatherapi.com/v1/forecast.json?key=6c4b854f8b4b4f7eb42214015230608&q=${cityName}&days=3`
+      `https://api.weatherapi.com/v1/forecast.json?key=6c4b854f8b4b4f7eb42214015230608&q=${cityName}&days=3`
     );
     var apiResponse = await weatherApi.json();
     data = apiResponse;
