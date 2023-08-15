@@ -64,7 +64,6 @@ document.addEventListener("DOMContentLoaded", function () {
     );
     var apiResponse = await weatherApi.json();
     data = apiResponse;
-
     displayWeather(cityName);
   }
 
@@ -77,24 +76,24 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-function displayWeather() {
-  const today = data.forecast.forecastday[0];
-  const tomorrow = data.forecast.forecastday[1];
-  const dayAfterTomorrow = data.forecast.forecastday[2];
-  const todayDate = new Date(today.date);
-  const tomorrowDate = new Date(tomorrow.date);
-  const dayAfterTomorrowDate = new Date(dayAfterTomorrow.date);
-  // =============  today
-  var dayOfWeek = daysOfWeek[todayDate.getDay()];
-  var dayNumber = todayDate.getDate();
-  var month = monthNames[todayDate.getMonth()];
-  // =============  tomorrow
-  var nextDay = daysOfWeek[tomorrowDate.getDay()];
-  // =============  tomorrowAfter
-  var nextDayAfter = daysOfWeek[dayAfterTomorrowDate.getDay()];
-  // =============  Data
-  var weatherData = "";
-  weatherData += `
+  function displayWeather() {
+    const today = data.forecast.forecastday[0];
+    const tomorrow = data.forecast.forecastday[1];
+    const dayAfterTomorrow = data.forecast.forecastday[2];
+    const todayDate = new Date(today.date);
+    const tomorrowDate = new Date(tomorrow.date);
+    const dayAfterTomorrowDate = new Date(dayAfterTomorrow.date);
+    // =============  today
+    var dayOfWeek = daysOfWeek[todayDate.getDay()];
+    var dayNumber = todayDate.getDate();
+    var month = monthNames[todayDate.getMonth()];
+    // =============  tomorrow
+    var nextDay = daysOfWeek[tomorrowDate.getDay()];
+    // =============  tomorrowAfter
+    var nextDayAfter = daysOfWeek[dayAfterTomorrowDate.getDay()];
+    // =============  Data
+    var weatherData = "";
+    weatherData += `
     <div class="col-lg-4">
               <div class="card bg-dark text-white ">
                 <div class="card-header d-flex justify-content-between">
@@ -104,14 +103,16 @@ function displayWeather() {
                 <div class="card-body p-4 text-center d-flex flex-column justify-content-center gap-2">
                   <h5 class="location" title="City">${data.location.name}</h5>
                   <div class="degree d-flex gap-2 justify-content-center align-items-center">
-                    <h4 class="h1 mb-0" title="Temperature">${today.day.maxtemp_c}°C</h4>
+                    <h4 class="h1 mb-0" title="Max-Temperature">${today.day.maxtemp_c}°C</h4>
                     <img src="${today.day.condition.icon}" alt="" />
                   </div>
+                    <h6 class=" mb-0 text-white-50" title="Min-Temperature">${today.day.mintemp_c}°C</h6>
+
                   <p class="status">${today.day.condition.text}</p>
                   <div class="info d-flex gap-4 justify-content-center">
                     <span title="Chance of rain"><i class="fa-solid fa-umbrella pe-1"></i>${today.day.daily_chance_of_rain}%</span
                     ><span title="Wind speed"><i class="fa-solid fa-wind pe-1"></i>${today.day.maxwind_kph}km/h</span
-                    ><span title="Humidity"><i class="fa-solid fa-droplet pe-1"></i>${today.day.avghumidity}%</span>
+                    ><span title="Average Humidity"><i class="fa-solid fa-droplet pe-1"></i>${today.day.avghumidity}%</span>
                   </div>
                 </div>
               </div>
@@ -124,7 +125,8 @@ function displayWeather() {
                 <div class="card-body p-4 d-flex flex-column justify-content-center gap-2 ">
                   <div class="degree mt-3">
                   <img src="${tomorrow.day.condition.icon}" alt="" />
-                    <h4 class="h3" title="Temperature">${tomorrow.day.maxtemp_c}°C</h4>
+                    <h4 class="h3" title="Max-Temperature">${tomorrow.day.maxtemp_c}°C</h4>
+                    <h6 class="text-white-50" title="Min-Temperature">${tomorrow.day.mintemp_c}°C</h6>
                   </div>
                   <p class="status">${tomorrow.day.condition.text}</p>
                 </div>
@@ -138,7 +140,8 @@ function displayWeather() {
                 <div class="card-body p-4 d-flex flex-column justify-content-center gap-2">
                   <div class="degree mt-3">
                   <img src="${dayAfterTomorrow.day.condition.icon}" alt="" />
-                    <h4 class="h3" title="Temperature">${dayAfterTomorrow.day.maxtemp_c}°C</h4>
+                    <h4 class="h3" title="Max-Temperature">${dayAfterTomorrow.day.maxtemp_c}°C</h4>
+                    <h6 class="text-white-50" title="Min-Temperature">${dayAfterTomorrow.day.mintemp_c}°C</h6>
                   </div>
                   <p class="status">${dayAfterTomorrow.day.condition.text}</p>
                 </div>
@@ -146,7 +149,6 @@ function displayWeather() {
             </div>
     `;
 
-  document.getElementById("dataRow").innerHTML = weatherData;
-}
-
+    document.getElementById("dataRow").innerHTML = weatherData;
+  }
 });
