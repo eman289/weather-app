@@ -17,8 +17,7 @@ Welcome to the Weather Forecast App repository! This web application allows you 
 Feel free to fork this repository to customize and enhance the app according to your preferences. Contributions and suggestions are welcome!
 
 **Preview:**
-[Check out the Weather Forecast App in action!]
-(https://eman289.github.io/weather-app/)
+[Live Demo!](https://eman289.github.io/weather-app/)
 
 **Credits:**
 This project was developed by [Eman Negm] and is powered by the WeatherAPI for accurate weather data.
