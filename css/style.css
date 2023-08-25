@@ -13,10 +13,6 @@ body {
   color: #ffffffad;
 }
 
-.navbar-brand i {
-  font-size: 40px;
-}
-
 .navbar-nav .nav-link.active,
 .navbar-nav .nav-link.show {
   color: #0d6efd;

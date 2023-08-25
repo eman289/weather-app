@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
-  var data = [];
-  var locationInput = document.getElementById("locationInput");
+  let data = [];
+  let locationInput = document.getElementById("locationInput");
   const daysOfWeek = [
     "Sunday",
     "Monday",
@@ -27,13 +27,13 @@ document.addEventListener("DOMContentLoaded", function () {
   ];
 
   async function searchByCoordinates(latitude, longitude) {
-    var weatherApi = await fetch(
+    let weatherApi = await fetch(
       `https://api.weatherapi.com/v1/forecast.json?key=6c4b854f8b4b4f7eb42214015230608&q=${latitude},${longitude}&days=3`
     );
-    var apiResponse = await weatherApi.json();
+    let apiResponse = await weatherApi.json();
     data = apiResponse;
-
-    displayWeather();
+    displayWeatherToday();
+    displayWeatherNext();
   }
 
   function getUserLocation() {
@@ -59,16 +59,19 @@ document.addEventListener("DOMContentLoaded", function () {
   getUserLocation();
 
   async function searchCity(cityName) {
-    var weatherApi = await fetch(
+    let weatherApi = await fetch(
       `https://api.weatherapi.com/v1/forecast.json?key=6c4b854f8b4b4f7eb42214015230608&q=${cityName}&days=3`
     );
-    var apiResponse = await weatherApi.json();
-    data = apiResponse;
-    displayWeather(cityName);
+    let apiResponse = await weatherApi.json();
+    if (!apiResponse.error) {
+      data = apiResponse;
+      displayWeatherToday(cityName);
+      displayWeatherNext(cityName);
+    }
   }
 
   locationInput.addEventListener("input", function () {
-    var city = locationInput.value;
+    let city = locationInput.value;
     if (city.length >= 3) {
       searchCity(city);
     } else {
@@ -76,25 +79,16 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  function displayWeather() {
+  function displayWeatherToday() {
     const today = data.forecast.forecastday[0];
-    const tomorrow = data.forecast.forecastday[1];
-    const dayAfterTomorrow = data.forecast.forecastday[2];
     const todayDate = new Date(today.date);
-    const tomorrowDate = new Date(tomorrow.date);
-    const dayAfterTomorrowDate = new Date(dayAfterTomorrow.date);
-    // =============  today
-    var dayOfWeek = daysOfWeek[todayDate.getDay()];
-    var dayNumber = todayDate.getDate();
-    var month = monthNames[todayDate.getMonth()];
-    // =============  tomorrow
-    var nextDay = daysOfWeek[tomorrowDate.getDay()];
-    // =============  tomorrowAfter
-    var nextDayAfter = daysOfWeek[dayAfterTomorrowDate.getDay()];
-    // =============  Data
-    var weatherData = "";
+    let dayOfWeek = daysOfWeek[todayDate.getDay()];
+    let dayNumber = todayDate.getDate();
+    let month = monthNames[todayDate.getMonth()];
+
+    let weatherData = "";
     weatherData += `
-    <div class="col-lg-4">
+           <div class="col" >
               <div class="card bg-dark text-white ">
                 <div class="card-header d-flex justify-content-between">
                   <span class="day">${dayOfWeek}</span
@@ -107,7 +101,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     <img src="${today.day.condition.icon}" alt="" />
                   </div>
                     <h6 class=" mb-0 text-white-50" title="Min-Temperature">${today.day.mintemp_c}°C</h6>
-
                   <p class="status">${today.day.condition.text}</p>
                   <div class="info d-flex gap-4 justify-content-center">
                     <span title="Chance of rain"><i class="fa-solid fa-umbrella pe-1"></i>${today.day.daily_chance_of_rain}%</span
@@ -116,39 +109,38 @@ document.addEventListener("DOMContentLoaded", function () {
                   </div>
                 </div>
               </div>
-            </div>
-              <div class="col-lg-4">
+              </div>
+              
+    `;
+
+    document.getElementById("todayData").innerHTML = weatherData;
+  }
+
+  function displayWeatherNext() {
+    let weatherData = "";
+    for (let i = 1; i < data.forecast.forecastday.length; i++) {
+      const day = data.forecast.forecastday[i];
+      const dayOfWeek = daysOfWeek[new Date(day.date).getDay()];
+
+      weatherData += `
+          <div class="col-lg-6">
               <div class="card bg-dark text-white text-center">
                 <div class="card-header">
-                  <span class="day">${nextDay}</span>
+                  <span class="day">${dayOfWeek}</span>
                 </div>
                 <div class="card-body p-4 d-flex flex-column justify-content-center gap-2 ">
                   <div class="degree mt-3">
-                  <img src="${tomorrow.day.condition.icon}" alt="" />
-                    <h4 class="h3" title="Max-Temperature">${tomorrow.day.maxtemp_c}°C</h4>
-                    <h6 class="text-white-50" title="Min-Temperature">${tomorrow.day.mintemp_c}°C</h6>
+                  <img src="${day.day.condition.icon}" alt="" />
+                    <h4 class="h3" title="Max-Temperature">${day.day.maxtemp_c}°C</h4>
+                    <h6 class="text-white-50" title="Min-Temperature">${day.day.mintemp_c}°C</h6>
                   </div>
-                  <p class="status">${tomorrow.day.condition.text}</p>
+                  <p class="status">${day.day.condition.text}</p>
                 </div>
               </div>
             </div>
-            <div class="col-lg-4">
-              <div class="card bg-dark text-white text-center">
-                <div class="card-header">
-                  <span class="day">${nextDayAfter}</span>
-                </div>
-                <div class="card-body p-4 d-flex flex-column justify-content-center gap-2">
-                  <div class="degree mt-3">
-                  <img src="${dayAfterTomorrow.day.condition.icon}" alt="" />
-                    <h4 class="h3" title="Max-Temperature">${dayAfterTomorrow.day.maxtemp_c}°C</h4>
-                    <h6 class="text-white-50" title="Min-Temperature">${dayAfterTomorrow.day.mintemp_c}°C</h6>
-                  </div>
-                  <p class="status">${dayAfterTomorrow.day.condition.text}</p>
-                </div>
-              </div>
-            </div>
-    `;
+      `;
+    }
 
-    document.getElementById("dataRow").innerHTML = weatherData;
+    document.getElementById("nextData").innerHTML = weatherData;
   }
 });
