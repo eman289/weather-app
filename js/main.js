@@ -1,4 +1,3 @@
-document.addEventListener("DOMContentLoaded", function () {
   let data = [];
   let locationInput = document.getElementById("locationInput");
   const daysOfWeek = [
@@ -143,4 +142,3 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById("nextData").innerHTML = weatherData;
   }
-});
